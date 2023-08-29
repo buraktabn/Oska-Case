@@ -5,6 +5,8 @@ const jwt = require('jsonwebtoken');
 const app = express();
 
 app.use(cookieParser())
+app.use(express.json());
+app.use('/download', downloadRoutes);
 
 app.use("/", function (req, res){
   const user = { id: 123, username: 'user' };
@@ -15,7 +17,6 @@ app.use("/", function (req, res){
   res.send("OSKA");
 })
 
-app.use('/download', downloadRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
